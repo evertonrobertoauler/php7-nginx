@@ -22,6 +22,8 @@ ADD config/php/fpm/php.ini /etc/php/7.0/fpm/
 RUN rm -rf /etc/php/7.0/cli/php.ini
 ADD config/php/cli/php.ini /etc/php/7.0/cli/
 
+RUN php -r "readfile('https://getcomposer.org/installer');" | php; mv composer.phar /usr/local/bin/composer; chmod +x /usr/local/bin/composer
+
 ADD config/start.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/start.sh
 CMD ["/usr/local/bin/start.sh"]
