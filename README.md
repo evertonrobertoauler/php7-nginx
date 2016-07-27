@@ -1,5 +1,10 @@
 # Container docker PHP7 + Nginx
 
+##Clone
+
+    git clone https://github.com/evertonrobertoauler/php7-nginx.git
+    cd php7-nginx
+
 ##Build
 
     docker build -t php7-nginx .
