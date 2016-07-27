@@ -13,10 +13,15 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y postfix >> /dev/null || :
 ADD config/postfix/filtro /etc/postfix/
 ADD config/postfix/main.cf /etc/postfix/
 
-RUN rm -v /etc/nginx/sites-enabled/default
+RUN rm -rf /etc/nginx/sites-enabled/default
 ADD config/nginx/default /etc/nginx/sites-enabled/
-RUN echo "daemon off;" >> /etc/nginx/nginx.conf
-ADD config/nginx/default /etc/nginx/sites-enabled/
+
+RUN rm -rf /etc/php/7.0/fpm/php.ini
+ADD config/php/fpm/php.ini /etc/php/7.0/fpm/
+
+RUN rm -rf /etc/php/7.0/cli/php.ini
+ADD config/php/cli/php.ini /etc/php/7.0/cli/
+
 ADD config/start.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/start.sh
 CMD ["/usr/local/bin/start.sh"]
