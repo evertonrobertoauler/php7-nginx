@@ -16,3 +16,7 @@
 ##Bash
 
     docker exec -ti $(docker ps -q) /bin/bash
+
+##Remover imagens antigas (nome == "<none>")
+
+    docker rmi $(docker images | grep "<none>" | xargs -n 1 echo | egrep "\w{12}")
